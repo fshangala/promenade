@@ -6,7 +6,7 @@
 
 # Prerequisites: $NUGET_SECRET_API_KEY setup as deployment variables.
 
-image: mcr.microsoft.com/dotnet/core/sdk:5.0
+image: mcr.microsoft.com/dotnet/sdk:5.0
 
 pipelines:
   default:
