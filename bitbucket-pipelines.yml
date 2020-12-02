@@ -18,7 +18,7 @@ pipelines:
             script:
               - export SOLUTION_NAME=Promenade
               - export CONFIGURATION=Release
-              - REPORTS_PATH=./test-reports/build_${BITBUCKET_BUILD_NUMBER}
+              - REPORTS_PATH=./test-reports/build_5.0.0
               - dotnet restore ${SOLUTION_NAME}.sln
               - dotnet build --no-restore ${SOLUTION_NAME}.sln --configuration ${CONFIGURATION}
               - dotnet test --no-build ${SOLUTION_NAME}.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
