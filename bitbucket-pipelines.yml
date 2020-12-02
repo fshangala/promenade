@@ -16,23 +16,23 @@ pipelines:
             caches:
               - dotnetcore
             script:
-              - export SOLUTION_NAME=PromenadeRestaurant
+              - export SOLUTION_NAME=Promenade
               - export CONFIGURATION=Release
               - REPORTS_PATH=./test-reports/build_1
-              - dotnet restore PromenadeRestaurant.sln
+              - dotnet restore Promenade.sln
               - dotnet build --no-restore PromenadeRestaurant.sln --configuration Release
-              - dotnet test --no-build PromenadeRestaurant.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
+              - dotnet test --no-build Promenade.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
         - step:
             name: Lint the dotnetcore package
             caches:
               - dotnetcore
             script:
-              - export SOLUTION_NAME=PromenadeRestaurant
+              - export SOLUTION_NAME=Promenade
               - REPORTS_PATH=linter-reports
               - dotnet new tool-manifest
               - dotnet tool install JetBrains.ReSharper.GlobalTools
               - dotnet tool restore
-              - dotnet jb inspectcode PromenadeRestaurant.sln --output="linter-reports/jb-1.xml"
+              - dotnet jb inspectcode Promenade.sln --output="linter-reports/jb-1.xml"
             artifacts:
               - linter-reports/**
   branches:
@@ -43,12 +43,12 @@ pipelines:
             caches:
               - dotnetcore
             script:
-              - export SOLUTION_NAME=PromenadeRestaurant
+              - export SOLUTION_NAME=Promenade
               - export export CONFIGURATION=Release
               - REPORTS_PATH=./test-reports/build_${BITBUCKET_BUILD_NUMBER}
-              - dotnet restore ${SOLUTION_NAME}.sln
-              - dotnet build --no-restore ${SOLUTION_NAME}.sln --configuration ${CONFIGURATION}
-              - dotnet test --no-build ${SOLUTION_NAME}.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
+              - dotnet restore Promenade.sln
+              - dotnet build --no-restore Promenade.sln --configuration ${CONFIGURATION}
+              - dotnet test --no-build Promenade.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
         - step:
             name: Security Scan
             script:
@@ -59,7 +59,7 @@ pipelines:
         name: Deploy to Production
         deployment: Production
         script:
-          - export SOLUTION_NAME=PromenadeRestaurant
+          - export SOLUTION_NAME=Promenade
           - export RELEASES_DIR="./releases"
           - export NUPKG_VERSION=1.0.${BITBUCKET_BUILD_NUMBER}
           # create nuget package
