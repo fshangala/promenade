@@ -20,7 +20,7 @@ pipelines:
               - export CONFIGURATION=Release
               - REPORTS_PATH=./test-reports/build_1
               - dotnet restore Promenade.sln
-              - dotnet build --no-restore PromenadeRestaurant.sln --configuration Release
+              - dotnet build --no-restore Promenade.sln --configuration Release
               - dotnet test --no-build Promenade.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
         - step:
             name: Lint the dotnetcore package
