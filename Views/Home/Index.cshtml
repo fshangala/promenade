@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var categories = (IEnumerable<Category>)ViewData["categories"];
+}
+
+<div class="container-sm">
+    <div class="jumbotron text-center shadow border-top border-secondary">
+        <h2 class="text-info"><b>Promenade Restaurant</b></h2>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-4">
+    @{
+        foreach(var category in categories)
+        {
+            <div class="col mb-2">
+                <div class="border border-secondary shadow">
+                    <div class="bg-secondary text-center text-white">
+                        <center><img src="@category.Image" class="h-100 w-auto"></center>
+                        <h3><a asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a></h3>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    </div>
+</div>

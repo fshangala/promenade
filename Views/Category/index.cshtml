@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Home Page";
+    var foods = (IEnumerable<Food>)ViewData["foods"];
+}
+
+<div class="container-sm">
+    <div class="row row-cols-sm-4 row-cols-xs-2">
+    @{
+        foreach(var food in foods)
+        {
+            <div class="col mb-2">
+                <div class="border border-secondary shadow">
+                    <div class="bg-secondary text-center">
+                        <a asp-controller="Food" asp-action="Index" asp-route-id="@food.Id">
+                        <img src="@food.Image" class="h-100 w-auto">
+                        </a>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">@food.Name</li>
+                        <li class="list-group-item">@food.Price</li>
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+    </div>
+</div>

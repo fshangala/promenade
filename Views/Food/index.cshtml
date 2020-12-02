@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Home Page";
+    var foodName = ViewData["FoodName"];
+    var category = ViewData["Category"];
+    var foodPrice = ViewData["FoodPrice"];
+    var foodImage = ViewData["FoodImage"];
+
+    var foods = (IEnumerable<Food>)ViewData["foods"];
+}
+<div class="container-sm">
+    <div class="row">
+        <div class="col-sm-4">
+            <center><img src="@foodImage" class="w-auto h-100"></center>
+        </div>
+        <div class="col-sm-8">
+            <div class="bg-white mb-2">
+                <ul class="list-group">
+                    <li class="list-group-item">@foodName</li>
+                    <li class="list-group-item">@category</li>
+                    <li class="list-group-item">@foodPrice</li>
+                </ul>
+            </div>
+            <!--
+            <div class="row mb-2">
+                <div class="col">
+                    <button class="btn btn-success w-100" data-toggle="modal" data-target="#place-order">Place Order</button>
+                    
+                    <div class="modal fade" id="place-order" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Body
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <button class="btn btn-info w-100">Add to Wish list</button>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div class="">
+        <h3 class="text-center">Related Foods</h3>
+        <div class="row row-cols-xs-2 row-cols-sm-4">
+        @{
+            foreach(var food in foods)
+            {
+                <div class="col mb-2">
+                    <div class="border border-secondary shadow">
+                        <div class="bg-secondary text-center">
+                            <a asp-controller="Food" asp-action="Index" asp-route-id="@food.Id">
+                                <img src="@food.Image" class="h-100 w-auto">
+                            </a>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">@food.Name</li>
+                            <li class="list-group-item">@food.Price</li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        }
+        </div>
+    </div>
+</div>

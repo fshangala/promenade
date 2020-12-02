@@ -1,0 +1,57 @@
+@model IEnumerable<Promenade.Models.Food>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-sm">
+    <div class="shadow border-bottom border-secondary mb-2">
+        <div class="nav">
+            <a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a>
+            <a class="nav-link" asp-controller="Admin" asp-action="Food">All Foods</a>
+        </div>
+    </div>
+    <div class="bg-white row row-cols-sm-4 row-cols-xs-2">
+        <h2>Index</h2>
+        <hr>
+
+        <p>
+            <a asp-action="CreateFood">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        <a asp-action="EditFood" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="DeleteFood" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
