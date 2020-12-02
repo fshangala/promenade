@@ -18,10 +18,10 @@ pipelines:
             script:
               - export SOLUTION_NAME=PromenadeRestaurant
               - export CONFIGURATION=Release
-              - REPORTS_PATH=./test-reports/build_${BITBUCKET_BUILD_NUMBER}
-              - dotnet restore ${SOLUTION_NAME}.sln
-              - dotnet build --no-restore ${SOLUTION_NAME}.sln --configuration ${CONFIGURATION}
-              - dotnet test --no-build ${SOLUTION_NAME}.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
+              - REPORTS_PATH=./test-reports/build_1
+              - dotnet restore PromenadeRestaurant.sln
+              - dotnet build --no-restore PromenadeRestaurant.sln --configuration Release
+              - dotnet test --no-build PromenadeRestaurant.sln --test-adapter-path:. --logger:"junit;LogFilePath=$REPORTS_PATH/junit.xml"
         - step:
             name: Lint the dotnetcore package
             caches:
@@ -32,7 +32,7 @@ pipelines:
               - dotnet new tool-manifest
               - dotnet tool install JetBrains.ReSharper.GlobalTools
               - dotnet tool restore
-              - dotnet jb inspectcode ${SOLUTION_NAME}.sln --output="${REPORTS_PATH}/jb-${BITBUCKET_BUILD_NUMBER}.xml"
+              - dotnet jb inspectcode PromenadeRestaurant.sln --output="linter-reports/jb-1.xml"
             artifacts:
               - linter-reports/**
   branches:
