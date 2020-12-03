@@ -65,4 +65,4 @@ pipelines:
           # create nuget package
           - dotnet pack ${SOLUTION_NAME}.sln --output ${RELEASES_DIR} --configuration Release -p:Version=${NUPKG_VERSION}
           # publish package to nuget.org
-          - dotnet nuget push ${RELEASES_DIR}/HelloPipes.${NUPKG_VERSION}.nupkg --api-key ${NUGET_SECRET_API_KEY} --source https://api.nuget.org/v3/index.json
+          - dotnet nuget push ${RELEASES_DIR}/HelloPipes.${NUPKG_VERSION}.nupkg --api-key ${NUGET_SECRET_API_KEY} -s https://api.nuget.org/v3/index.json
