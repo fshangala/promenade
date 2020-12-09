@@ -259,6 +259,46 @@ namespace Promenade.Controllers
             }
         }
 
+        //Settings
+        public async Task<IActionResult> Settings()
+        {
+            ViewData["settings"] = await _context.Details.ToListAsync();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSettings(int id, [Bind("Id,Name,Value,Type")] Details setting)
+        {
+            if (id != setting.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(setting);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    var fd = await _context.Details.FindAsync(setting.Id);
+                    if (fd == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Settings");
+            }
+            return RedirectToAction("Settings");
+        }
+
         public IActionResult Manue()
         {
             return View();

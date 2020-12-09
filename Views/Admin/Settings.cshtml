@@ -1,0 +1,45 @@
+@model Promenade.Models.Details
+@{
+    ViewData["Title"] = "Settings";
+    var settings = (IEnumerable<Details>)ViewData["settings"];
+}
+
+<div class="container-sm">
+    <div class="shadow border-bottom border-secondary mb-2 bg-info">
+        <div class="nav">
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Index">Dashboard</a>
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Food">All Foods</a>
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Settings">Settings</a>
+        </div>
+    </div>
+    <div class="bg-white p-2">
+        <h2>Settings</h2>
+        @foreach(var setting in settings){
+            <form asp-action="EditSettings" class="w-100">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="Id" value="@setting.Id" />
+                <input type="hidden" name="Type" value="@setting.Type" />
+                <input type="hidden" name="Name" value="@setting.Name" />
+                @if(setting.Type == "Contact")
+                {
+                <div class="form-group">
+                    <label class="control-label">@setting.Name</label>
+                    <input name="Value" class="form-control" value="@setting.Value" />
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+                }
+                else
+                {
+                <div class="form-group">
+                    <label class="control-label">@setting.Name</label>
+                    <textarea name="Value" class="form-control">@setting.Value</textarea>
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+                }
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        }
+    </div>
+</div>

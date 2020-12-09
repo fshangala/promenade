@@ -1,14 +1,15 @@
 @model IEnumerable<Promenade.Models.Category>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Admin";
 }
 
 <div class="container-sm">
     <div class="shadow border-bottom border-secondary mb-2">
         <div class="nav">
-            <a class="nav-link" asp-controller="Admin" asp-action="Index">Dashboard</a>
-            <a class="nav-link" asp-controller="Admin" asp-action="Food">All Foods</a>
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Index">Dashboard</a>
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Food">All Foods</a>
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Settings">Settings</a>
         </div>
     </div>
     <div class="bg-white row row-cols-sm-4 row-cols-xs-2">

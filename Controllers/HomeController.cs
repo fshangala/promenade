@@ -26,11 +26,16 @@ namespace Promenade.Controllers
         {
             var categories = await _context.Category.ToListAsync();
             ViewData["categories"] = categories;
+
+            var settings = await _context.Details.ToListAsync();
+            ViewData["settings"] = settings;
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            var settings = await _context.Details.ToListAsync();
+            ViewData["settings"] = settings;
             return View();
         }
 

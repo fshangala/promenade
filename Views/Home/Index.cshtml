@@ -1,25 +1,46 @@
 ﻿@{
     ViewData["Title"] = "Home";
     var categories = (IEnumerable<Category>)ViewData["categories"];
+    var settings = (IEnumerable<Details>)ViewData["settings"];
 }
 
 <div class="container-sm">
     <div class="jumbotron text-center shadow border-top border-secondary">
         <h2 class="text-info"><b>Promenade Restaurant</b></h2>
     </div>
+    <div class="shadow bg-white p-2 text-center">
+        <h2>About Us</h2>
+        @Html.Raw(settings.First(c => c.Name == "Description").Value)
+    </div>
     <div class="row row-cols-2 row-cols-sm-4">
     @{
         foreach(var category in categories)
         {
-            <div class="col mb-2">
+            <div class="col my-2">
                 <div class="border border-secondary shadow">
-                    <div class="bg-secondary text-center text-white">
-                        <center><img src="@category.Image" class="h-100 w-auto"></center>
+                    <div class="bg-white text-center position-relative">
+                        <center><img src="@category.Image" class="" width="100"></center>
                         <h3><a asp-controller="Category" asp-action="Index" asp-route-id="@category.Id">@category.Name</a></h3>
                     </div>
                 </div>
             </div>
         }
     }
+    </div>
+    <div class="shadow bg-white p-2">
+        <h2>Contact Us</h2>
+        @Html.Raw(settings.First(c => c.Name == "Description").Value)
+        <table class="table">
+        @foreach(var setting in settings)
+        {
+            @if(setting.Type == "Contact")
+            {
+                <tr>
+                    <th>@setting.Name</th>
+                    <td>@setting.Value</td>
+                </tr>
+            }
+        }
+        </table>
     </div>
 </div>
