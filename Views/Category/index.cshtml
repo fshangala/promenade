@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Category";
     var foods = (IEnumerable<Food>)ViewData["foods"];
 }
 
@@ -17,7 +17,7 @@
                     </div>
                     <ul class="list-group">
                         <li class="list-group-item">@food.Name</li>
-                        <li class="list-group-item">@food.Price</li>
+                        <li class="list-group-item">$@food.Price</li>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = ViewData["FoodName"];
     var foodName = ViewData["FoodName"];
     var category = ViewData["Category"];
     var foodPrice = ViewData["FoodPrice"];
@@ -17,7 +17,7 @@
                 <ul class="list-group">
                     <li class="list-group-item">@foodName</li>
                     <li class="list-group-item">@category</li>
-                    <li class="list-group-item">@foodPrice</li>
+                    <li class="list-group-item">$@foodPrice</li>
                 </ul>
             </div>
             <!--
@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="">
-        <h3 class="text-center">Related Foods</h3>
+        <h3 class="text-center bg-white p-2"><b>Related Foods<b></h3>
         <div class="row row-cols-xs-2 row-cols-sm-4">
         @{
             foreach(var food in foods)
@@ -60,7 +60,7 @@
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item">@food.Name</li>
-                            <li class="list-group-item">@food.Price</li>
+                            <li class="list-group-item">$@food.Price</li>
                         </ul>
                     </div>
                 </div>

@@ -173,3 +173,4 @@
 /home/fshangala/Desktop/Projects/Promenade/obj/Debug/net5.0/Razor/Views/Admin/Food.cshtml.g.cs
 /home/fshangala/Desktop/Projects/Promenade/obj/Debug/net5.0/Razor/Views/Admin/CreateFood.cshtml.g.cs
 /home/fshangala/Desktop/Projects/Promenade/obj/Debug/net5.0/Razor/Views/Admin/EditFood.cshtml.g.cs
+/home/fshangala/Desktop/Projects/Promenade/bin/Debug/net5.0/source.json
